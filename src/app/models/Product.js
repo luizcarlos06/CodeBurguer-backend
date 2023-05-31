@@ -5,7 +5,6 @@ class Product extends Model{
         super.init({
             name: Sequelize.STRING,
             price: Sequelize.INTEGER,
-            category: Sequelize.STRING,
             path: Sequelize.STRING,
             url:{
                 type: Sequelize.VIRTUAL,
