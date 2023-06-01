@@ -8,7 +8,9 @@ class Category extends Model{
         },{
             sequelize,
         }
-    )}
+    )
+    return this
+    }
 }
 
 export default Category
