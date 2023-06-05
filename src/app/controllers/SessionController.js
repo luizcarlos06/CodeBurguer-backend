@@ -1,6 +1,6 @@
 import * as Yup from 'yup'
 import User from '../models/User'
-import Jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 import authConfig from '../../config/auth'
 
 class SessionController {
@@ -15,6 +15,7 @@ class SessionController {
         }
 
         if (!(await schema.isValid(req.body))) userEmailOrPasswordIncorrect()
+
        const {email, password} = req.body
 
        const user = await User.findOne({
@@ -31,7 +32,8 @@ class SessionController {
          email,
          name: user.name,
          admin: user.admin,
-         token: Jwt.sign({id:user.id , name: user.name},authConfig.secret ,{ expiresIn: authConfig.expiresIn ,
+         token: jwt.sign({id:user.id , name: user.name},authConfig.secret ,{ 
+            expiresIn: authConfig.expiresIn ,
         }),
         })
     }
